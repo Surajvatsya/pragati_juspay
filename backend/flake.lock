@@ -172,11 +172,11 @@
         "sequelize": "sequelize"
       },
       "locked": {
-        "lastModified": 1687495336,
-        "narHash": "sha256-Kf/aXZbrY4yUMQEsB0iUzP12o0zy+1/BAmwidRIp0iQ=",
+        "lastModified": 1693515422,
+        "narHash": "sha256-5SeCS8NjaIB5Na/RUgCYvIBJuFNQDZII34K/nIzQ7LA=",
         "owner": "juspay",
         "repo": "euler-hs",
-        "rev": "76df10f718956ecfd82471e1843ba8b6335473bf",
+        "rev": "22793307efb0faa5d1fb0cc17f8fee3a325070f1",
         "type": "github"
       },
       "original": {
@@ -373,6 +373,7 @@
       },
       "original": {
         "owner": "srid",
+        "ref": "0.4.0",
         "repo": "haskell-flake",
         "type": "github"
       }

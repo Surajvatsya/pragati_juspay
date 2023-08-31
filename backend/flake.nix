@@ -4,7 +4,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     systems.url = "github:nix-systems/default";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    haskell-flake.url = "github:srid/haskell-flake";
+    haskell-flake.url = "github:srid/haskell-flake/0.4.0";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
     process-compose-flake.url = "github:Platonic-Systems/process-compose-flake";
@@ -22,24 +22,54 @@
       ];
       perSystem = { self', system, lib, config, pkgs, ... }: {
         haskellProjects.default = {
-	  imports = [
-		inputs.euler-hs.haskellFlakeProjectModules.output
-	  ];
+          imports = [
+            inputs.euler-hs.haskellFlakeProjectModules.output
+          ];
           basePackages = pkgs.haskell.packages.ghc8107;
 
           packages = {
+            aeson.source = "1.5.6.0";
             euler-hs.source = inputs.euler-hs;
+            universum.source = "1.6.1";
+            servant.source = "0.18.3";
+            servant-client.source = "0.18.1";
+            servant-client-core.source = "0.18.1";
+            servant-server.source = "0.18.1";
+            http2.source = "3.0.2";
           };
 
           settings = {
+            aeson.jailbreak = true;
             euler-hs = {
               check = false;
               jailbreak = true;
               haddock = false;
             };
-	    binary-parsers.broken = false;
-	    word24.broken = false;
-	    tinylog.broken = false;
+            http2.check = false;
+            universum = {
+              jailbreak = true;
+              check = false;
+            };
+            servant = {
+              jailbreak = true;
+              check = false;
+            };
+            servant-server = {
+              jailbreak = true;
+              check = false;
+            };
+            servant-client-core = {
+              check = false;
+              jailbreak = true;
+            };
+            servant-client = {
+              check = false;
+              jailbreak = true;
+            };
+
+            binary-parsers.broken = false;
+            word24.broken = false;
+            tinylog.broken = false;
           };
 
           # Development shell configuration
