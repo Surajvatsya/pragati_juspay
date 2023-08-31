@@ -22,6 +22,7 @@
       ];
       perSystem = { self', system, lib, config, pkgs, ... }: {
         haskellProjects.default = {
+          projectRoot = ./.;
           imports = [
             inputs.euler-hs.haskellFlakeProjectModules.output
           ];

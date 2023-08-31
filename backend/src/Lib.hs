@@ -1,4 +1,4 @@
 module Lib where
 
-someFunc :: IO 
+someFunc :: IO ()
 someFunc = return ()

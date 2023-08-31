@@ -94,5 +94,6 @@ common shared
   default-language:   Haskell2010
 
 executable backend
-  import:  shared
-  main-is: Main.hs
+  import:        shared
+  main-is:       Main.hs
+  other-modules: Lib
