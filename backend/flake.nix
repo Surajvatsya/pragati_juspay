@@ -1,5 +1,5 @@
 {
-  description = "srid/backend: Nix template for Haskell projects";
+  description = "pragati/backend";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     systems.url = "github:nix-systems/default";
@@ -9,6 +9,7 @@
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
     process-compose-flake.url = "github:Platonic-Systems/process-compose-flake";
     services-flake.url = "github:juspay/services-flake/elasticsearch";
+    euler-hs.url = "github:juspay/euler-hs";
   };
 
   outputs = inputs:
@@ -20,33 +21,25 @@
         inputs.process-compose-flake.flakeModule
       ];
       perSystem = { self', system, lib, config, pkgs, ... }: {
-        # Our only Haskell project. You can have multiple projects, but this template
-        # has only one.
-        # See https://github.com/srid/haskell-flake/blob/master/example/flake.nix
         haskellProjects.default = {
-          # The base package set (this value is the default)
-          # basePackages = pkgs.haskellPackages;
+	  imports = [
+		inputs.euler-hs.haskellFlakeProjectModules.output
+	  ];
+          basePackages = pkgs.haskell.packages.ghc8107;
 
-          # Packages to add on top of `basePackages`
           packages = {
-            # Add source or Hackage overrides here
-            # (Local packages are added automatically)
-            /*
-            aeson.source = "1.5.0.0" # Hackage version
-            shower.source = inputs.shower; # Flake input
-            */
+            euler-hs.source = inputs.euler-hs;
           };
 
-          # Add your package overrides here
           settings = {
-            /*
-            backend = {
+            euler-hs = {
+              check = false;
+              jailbreak = true;
               haddock = false;
             };
-            aeson = {
-              check = false;
-            };
-            */
+	    binary-parsers.broken = false;
+	    word24.broken = false;
+	    tinylog.broken = false;
           };
 
           # Development shell configuration
@@ -58,8 +51,6 @@
           autoWire = [ "packages" "apps" "checks" ]; # Wire all but the devShell
         };
 
-        # Auto formatters. This also adds a flake check to ensure that the
-        # source tree was auto formatted.
         treefmt.config = {
           projectRootFile = "flake.nix";
 
@@ -79,18 +70,18 @@
         };
 
         _module.args.pkgs = import inputs.nixpkgs {
-            inherit system;
-            # Required for elastic search
-            config.allowUnfree = true;
-          };
+          inherit system;
+          # Required for elastic search
+          config.allowUnfree = true;
+        };
 
         # Default package & app.
         packages.default = self'.packages.backend;
         apps.default = self'.apps.backend;
-	process-compose."elastic" = { ... }: {
-            imports = [ inputs.services-flake.processComposeModules.default ];
-            services.elasticsearch."es1".enable = true;
-          };
+        process-compose."elastic" = { ... }: {
+          imports = [ inputs.services-flake.processComposeModules.default ];
+          services.elasticsearch."es1".enable = true;
+        };
 
         # Default shell.
         devShells.default = pkgs.mkShell {
