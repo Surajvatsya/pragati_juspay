@@ -1,0 +1,100 @@
+/* Add this CSS to your App.css or your stylesheets */
+
+/* Apply the secondary color for body background */
+.App {
+  background-color: var(--secondary-color);
+  background-image: url(""); /* Replace with the actual path to your image */
+  background-size: cover; /* Make sure the image covers the entire background */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-attachment: fixed; /* Keep the background fixed while scrolling */
+  background-position: center center; /* Center the image */
+  padding: 20px; /* Add some padding for better readability */
+  font-family:'Arial', sans serif;
+}
+
+
+/* Style for input groups */
+.input-group {
+  margin-bottom: 20px;
+}
+
+/* Style for labels */
+.input-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Style for text inputs and selects */
+.input-group input,
+.input-group select {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Input Field Focus*/
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Form Container */
+
+.form-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+
+/* Style for the submit button */
+.input-group button[type="submit"] {
+  background-color: var(--facebook-blue);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Submit button when disabled */
+
+.input-group button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+.input-group button[type="submit"]:hover {
+  background-color: var(--accent-color);
+}
+
+button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Adjust based on User's screen */
+
+@media (max-width: 768px) {
+  .input-group input,
+  .input-group select {
+    width: 100%;
+  }
+}
