@@ -8,7 +8,8 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
     process-compose-flake.url = "github:Platonic-Systems/process-compose-flake";
-    services-flake.url = "github:juspay/services-flake/elasticsearch";
+    # services-flake.url = "github:juspay/services-flake/elasticsearch";
+    services-flake.url = "github:juspay/services-flake";
     euler-hs.url = "github:juspay/euler-hs";
   };
 
@@ -71,6 +72,7 @@
             binary-parsers.broken = false;
             word24.broken = false;
             tinylog.broken = false;
+            openapi3.broken = false;
           };
 
           # Development shell configuration
@@ -112,6 +114,10 @@
         process-compose."elastic" = { ... }: {
           imports = [ inputs.services-flake.processComposeModules.default ];
           services.elasticsearch."es1".enable = true;
+        };
+        process-compose."postgres" = { ... }: {
+          imports = [ inputs.services-flake.processComposeModules.default ];
+          services.postgres."postgres".enable = true;
         };
 
         # Default shell.
