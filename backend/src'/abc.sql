@@ -1,8 +1,7 @@
 -- CREATE USER bar;
 -- CREATE DATABASE foo OWNER bar;
 
-CREATE TABLE PRAGATI (
-    name varchar(20);
+CREATE TABLE pragati (
+    name varchar(20),
+    roll int
 );
-
-

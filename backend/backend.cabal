@@ -110,6 +110,7 @@ common shared
     , safe
     , universum
     , postgresql-simple
+    , bytestring
 
 
   hs-source-dirs:     src
@@ -119,5 +120,10 @@ executable backend
   import:        shared
   main-is:       Main.hs
   other-modules: 
-    Lib
-    -- Db
+    Server
+    API.UI.CheckDuplicate 
+    Domain.Action.UI.CheckDuplicate
+    Domain.Types.Candidate
+    Storage.Beam.CheckDuplicate
+    Storage.Beam.Common
+    Storage.Queries.CheckDuplicate
