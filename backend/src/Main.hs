@@ -2,4 +2,4 @@ module Main where
 import Server
 
 main :: IO()
-main = startPragati
+main = startServer

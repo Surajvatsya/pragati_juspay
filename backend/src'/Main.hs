@@ -20,8 +20,8 @@ import Db
 
 import Control.Monad.Except
 import Control.Monad.Reader
-import Data.Aeson
-import Data.Aeson.Types
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as DAT
 -- import Data.Attoparsec.ByteString
 import Data.ByteString (ByteString)
 import Data.List
@@ -38,7 +38,7 @@ import System.Directory
 -- import Text.Blaze
 -- import Text.Blaze.Html.Renderer.Utf8
 -- import Servant.Types.SourceT (source)
-import qualified Data.Aeson.Parser
+import qualified Data.Aeson.Parser as AP
 -- import qualified Text.Blaze.Html
 
 -- main :: IO ()

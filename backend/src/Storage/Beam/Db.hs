@@ -4,8 +4,11 @@
 
 -- {-# HLINT ignore "Use newtype instead of data" #-}
 
-module Storage.Beam.Common where
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveAnyClass #-}
 
+module Storage.Beam.Db where
+import Storage.Beam.Candidate
 import qualified Database.Beam as B
 import GHC.Generics (Generic)
 
